@@ -4,26 +4,34 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
-public class BaseTest {
-    protected WebDriver driver;
+public class ApplicationManager {
+    private WebDriver driver;
+    private LoginPage mainPage;
 
-    @BeforeMethod
-    public void beforeMethod() {
+    public ApplicationManager() {
 //        WebDriverManager.chromedriver().setup();
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\42770\\chromedriver.exe");
+
         driver = new ChromeDriver();
+        mainPage = new LoginPage(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void afterMethod() {
+    public void open() {
+        driver.get("https://www.amazon.com");
+    }
+
+    public void close() {
         if (driver != null) {
             driver.quit();
         }
     }
-}
 
+    public LoginPage getLoginPage() {
+        return mainPage;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+}
