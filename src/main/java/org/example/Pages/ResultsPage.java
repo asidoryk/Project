@@ -26,6 +26,7 @@ public class ResultsPage extends Page {
             productsName.add(titleElement.getText());
         }
         return productsName;
+        
     }
 
     public String getProductPrice(String productName) {
