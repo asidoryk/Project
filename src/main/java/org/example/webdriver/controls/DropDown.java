@@ -1,5 +1,11 @@
 package org.example.webdriver.controls;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +16,7 @@ public class DropDown extends AbstractEditableStringElement {
 
     public DropDown(WebDriver driver, By locator, WebDriverWait wait) {
         super(driver, locator);
+        dropdownElement = driver.findElement(locator);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
     }
 
@@ -27,6 +34,7 @@ public class DropDown extends AbstractEditableStringElement {
     }
 
     public void selectByIndex(int index) {
+        clickDropdownPromptToOpen();
         expandOption();
         List<WebElement> options = getOptions();
         if (index >= 0 && index < options.size()) {
@@ -51,7 +59,7 @@ public class DropDown extends AbstractEditableStringElement {
     }
 
     public List<WebElement> getOptions() {
-        return dropdownElement.findElements(optionItemDefault);
+        return dropdownElement.findElements(menuItemDefault);
     }
 
     public void expandOption() {
@@ -63,6 +71,7 @@ public class DropDown extends AbstractEditableStringElement {
     }
 
     public List<String> getAllAvailableValues() {
+        clickDropdownPromptToOpen();
         expandOption();
         List<WebElement> options = getOptions();
         List<String> values = new ArrayList<>();
@@ -98,6 +107,16 @@ public class DropDown extends AbstractEditableStringElement {
             }
         }
         return true;
+    }
+
+    private void clickDropdownPromptToOpen() {
+        WebElement dropdownPrompt = dropdownElement.findElement(By.xpath("//span[@class='a-dropdown-prompt']"));
+        if (dropdownPrompt.isDisplayed()) {
+            dropdownPrompt.click();
+        }
+
+      dropdownElement.findElement(By.xpath("//a[@id='s-result-sort-select_0']")).click();
+
     }
 
     @Override

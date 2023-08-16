@@ -6,8 +6,6 @@ import org.example.webdriver.controls.Button;
 import org.example.webdriver.controls.TextBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPageMetaData extends MetaData{
 
