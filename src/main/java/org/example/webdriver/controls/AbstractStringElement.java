@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public abstract class AbstractStringElement<I> extends BaseElement<I, String> {
-    protected AbstractStringElement( WebDriver driver, WebElement element) {
-        super(driver, element);
+    protected AbstractStringElement( WebDriver driver, By locator) {
+        super(driver, locator);
     }
 }

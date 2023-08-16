@@ -1,6 +1,8 @@
 package org.example.pages;
 
+import lombok.Getter;
 import org.example.pages.metaData.LoginPageMetaData;
+import org.example.webdriver.controls.TextBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginPage extends Page{
+import static org.example.pages.app.MainApp.MAIN_URL;
+
+public class LoginPage extends Page {
 
     private LoginPageMetaData metaData;
 
@@ -23,14 +27,22 @@ public class LoginPage extends Page{
         return metaData;
     }
 
-    private void open() {
-        driver.get("https://www.amazon.com/");
+    public void open() {
+        if (!this.isApplicationOpened()) {
+            driver.get(MAIN_URL);
+        }
     }
 
+    public boolean isApplicationOpened() {
+        return driver.getCurrentUrl().equals(MAIN_URL);
+    }
 
-    private void searchItem(String value) {
+    public ResultsPage searchItem(String value) {
+        getMetaData().getSearchTextBox().setRawValue(value); //TODO change Method in BaseElement
+        getMetaData().getSearchButton().click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.titleContains(value)); //TODO check
+        return new ResultsPage(driver);
     }
 
     private List<String> getSuggestions() {

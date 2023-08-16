@@ -1,20 +1,21 @@
 package org.example.webdriver.controls;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TextBox extends AbstractEditableStringElement {
 
-    public TextBox(WebDriver driver, WebElement element) {
-        super(driver, element);
+    public TextBox(WebDriver driver, By locator, WebDriverWait wait) {
+        super(driver, locator);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
+
     }
 
     @Override
-    protected void setRawValue(String value) {
+    public void setRawValue(String value) {
         this.setValue(this, value); //TODO add waiter
     }
 

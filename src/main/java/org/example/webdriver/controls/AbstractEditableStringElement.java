@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public abstract class AbstractEditableStringElement extends AbstractStringElement<String> {
 
-    protected AbstractEditableStringElement(WebDriver driver, WebElement element) {
-        super(driver, element);
+    protected AbstractEditableStringElement(WebDriver driver, By locator) {
+        super(driver, locator);
     }
 
 }

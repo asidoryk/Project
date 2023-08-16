@@ -1,18 +1,17 @@
 package org.example;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Main extends BaseTest {
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\42770\\chromedriver.exe");
-WebDriver driver = new ChromeDriver();
-driver.get("amazon.com");
+
         ApplicationManager mainApp = new ApplicationManager();
         mainApp.open();
 
-        LoginPage loginPage = new LoginPage(mainApp.getDriver());
-        loginPage.getMetaData().shoppingCart.click();
+
     }
 }

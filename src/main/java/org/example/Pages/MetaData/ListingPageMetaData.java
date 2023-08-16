@@ -4,6 +4,7 @@ import org.example.webdriver.controls.Button;
 import org.example.webdriver.controls.TextBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ListingPageMetaData extends MetaData {
 
@@ -11,14 +12,13 @@ public class ListingPageMetaData extends MetaData {
     public static TextBox searchTextBox;
     public static Button buyNowButton;
 
-    protected ListingPageMetaData(WebDriver driver) {
+    public ListingPageMetaData(WebDriver driver) {
         super(driver);
         initElements();
     }
 
     private void initElements() {
-        addToCartButton = new Button(driver, driver.findElement(By.xpath("//input[@id='add-to-cart-button']")));
-        buyNowButton = new Button(driver, driver.findElement(By.xpath("//input[@id='buy-now-button']")));
-
+        addToCartButton = new Button(driver, By.xpath("//input[@id='add-to-cart-button']"), wait);
+        buyNowButton = new Button(driver, By.xpath("//input[@id='buy-now-button']"), wait);
     }
 }

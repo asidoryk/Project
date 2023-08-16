@@ -1,8 +1,13 @@
 package org.example;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.example.pages.ListingPage;
+import org.example.pages.LoginPage;
+import org.example.pages.ResultsPage;
+import org.example.pages.app.MainApp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.testng.annotations.AfterMethod;
@@ -10,12 +15,14 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
     protected WebDriver driver;
+    protected ResultsPage resultsPage;
+    protected ListingPage listingPage;
+    protected LoginPage loginPage;
 
     @BeforeMethod
     public void beforeMethod() {
-//        WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\42770\\chromedriver.exe");
-        driver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -23,6 +30,10 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    protected MainApp mainApp() {
+        return new MainApp(driver);
     }
 }
 

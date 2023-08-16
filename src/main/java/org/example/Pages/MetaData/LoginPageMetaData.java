@@ -1,17 +1,22 @@
 package org.example.pages.metaData;
 
+
+import lombok.Getter;
 import org.example.webdriver.controls.Button;
 import org.example.webdriver.controls.TextBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPageMetaData extends MetaData{
 
     @Getter
-    public static Button shoppingCart;
-    public static TextBox searchTextBox;
-    public static Button searchButton;
-
+    private Button shoppingCart;
+    @Getter
+    private TextBox searchTextBox;
+    @Getter
+    private Button searchButton;
 
 
     public LoginPageMetaData(WebDriver driver) {
@@ -20,9 +25,10 @@ public class LoginPageMetaData extends MetaData{
     }
 
     private void initElements() {
-        shoppingCart = new Button(driver, driver.findElement(By.id("nav-cart-count")));
-        searchTextBox = new TextBox(driver, driver.findElement(By.id("twotabsearchtextbox")));
-        searchButton = new Button(driver, driver.findElement(By.id("nav-search-submit-text")));
+
+        shoppingCart = new Button(driver, By.id("nav-cart-count"), wait);
+        searchTextBox = new TextBox(driver, By.id("twotabsearchtextbox"), wait);
+        searchButton = new Button(driver, By.id("nav-search-submit-text"), wait);
 
     }
 

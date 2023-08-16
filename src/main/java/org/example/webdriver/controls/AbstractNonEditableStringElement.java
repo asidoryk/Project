@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class AbstractNonEditableStringElement extends AbstractStringElement<Void>{
 
-    protected AbstractNonEditableStringElement(WebDriver driver, WebElement element) {
-        super(driver, element);
+    protected AbstractNonEditableStringElement(WebDriver driver, By locator) {
+        super(driver, locator);
     }
 
     @Override

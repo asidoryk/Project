@@ -9,15 +9,15 @@ import java.util.List;
 
 public class ResultsPage extends Page {
 
-    protected ResultsPage(WebDriver driver) {
+    public ResultsPage(WebDriver driver) {
         super(driver);
     }
 
-    private List<WebElement> getSearchResults() {
+    public List<WebElement> getSearchResults() {
         return driver.findElements(By.xpath("//div[@data-asin]"));
     }
 
-    private List<String> getProductsName() {
+    public List<String> getProductsName() {
         List<WebElement> searchResults = getSearchResults();
         List<String> productsName = new ArrayList<>();
 
