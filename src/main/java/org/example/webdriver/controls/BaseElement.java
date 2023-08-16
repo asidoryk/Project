@@ -114,6 +114,14 @@ public abstract class BaseElement<I, O> implements HighlightableElement {
             throw mainException;
         }
     }
+
+    public WebElement getWebElement() {
+        return this.element;
+    }
+
+    public WebDriver getDriver() {
+        return this.driver;
+    }
 }
 
 
