@@ -15,9 +15,6 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
     protected WebDriver driver;
-    protected ResultsPage resultsPage;
-    protected ListingPage listingPage;
-    protected LoginPage loginPage;
 
     @BeforeMethod
     public void beforeMethod() {
